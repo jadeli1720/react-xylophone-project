@@ -8,7 +8,7 @@ function App() {
       <h1>Create your react xylophone</h1>
       <div className="xylophone">
         {/* I am placeholder buttons, please create me using a map, and with your own component */}
-        <button>c</button>
+        <button onClick={() => new Audio(notes[0].file).play() }>c</button>
         <button>d1</button>
         <button>e1</button>
         <button>f</button>
