@@ -1,0 +1,39 @@
+.xylophone{
+    display: flex;
+    align-items: center;
+}
+
+.note-button{
+    padding: 10px;
+    height: 200px;
+    width: 60px;
+    border: none;
+    color: white;
+    font-weight: Bold;
+    font-size: 24px;
+    background-color: rgb(209, 0, 112);
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    &:not(:last-child){
+        margin-right: 15px;
+    }
+
+    &:hover{
+        background-color: rgb(161, 0, 86);
+    }
+
+    &:before, &:after{
+        content: "";
+        background-color: white;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+}
+

@@ -6,10 +6,14 @@ import "./App.scss";
 const NoteButton = props => {
   console.log("PROPS", props);
   return (
-    <button onClick={() => {
+    <button 
+      className = "note-button"
+      style ={{height: (200 - (15 * props.index) + 'px')}}
+      onClick={() => {
       props.setPlayedNotes([...props.playedNotes ,props.note]);
       new Audio(props.note.file).play();
       }}>
+        
       {props.note.name}
     </button>
   );
@@ -22,15 +26,17 @@ function App() {
     <div className="page">
       <h1>Create your react xylophone</h1>
       <div className="xylophone">
-        {JSON.stringify(playedNotes)}
-        {notes.map(noteObj => (
+        
+        {notes.map((noteObj, index) => (
           <NoteButton
+            index={index}
             playedNotes = {playedNotes}
             setPlayedNotes = {setPlayedNotes}
             key={noteObj.name} 
             note={noteObj}/>
         ))}
       </div>
+      {JSON.stringify(playedNotes)}
       {/* <button>Replay</button> */}
       {/* <button>Clear</button> */}
     </div>
