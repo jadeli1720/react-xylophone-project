@@ -4,13 +4,13 @@ import "./App.scss";
 
 // Making NoteButton component. Can separate this later into it's own file
 const NoteButton = props => {
-  console.log("PROPS", props);
+  // console.log("PROPS", props);
   return (
     <button 
       className = "note-button"
       style ={{height: (200 - (15 * props.index) + 'px')}}
       onClick={() => {
-      props.setPlayedNotes([...props.playedNotes ,props.note]);
+      props.addPlayedNote(props.note)
       new Audio(props.note.file).play();
       }}>
         
@@ -21,6 +21,21 @@ const NoteButton = props => {
 
 function App() {
   const [playedNotes, setPlayedNotes] = useState([])
+  
+  const replayNotes = () => {
+    playedNotes.map((note, index) => {
+      window.setTimeout(() => new Audio(note.file).play(), 500 * index);
+    });
+  };
+
+  const resetNotes = () => {
+    setPlayedNotes([])
+  }
+
+  // Limits the access of setPlayedNotes function from the component NoteButton and reducing the amount of props that need to be passed to the child component
+  const addPlayedNote = (note) => {
+    setPlayedNotes([...playedNotes ,note]);
+  }
 
   return (
     <div className="page">
@@ -30,15 +45,14 @@ function App() {
         {notes.map((noteObj, index) => (
           <NoteButton
             index={index}
-            playedNotes = {playedNotes}
-            setPlayedNotes = {setPlayedNotes}
+            addPlayedNote = {addPlayedNote}
             key={noteObj.name} 
             note={noteObj}/>
         ))}
       </div>
       {JSON.stringify(playedNotes)}
-      {/* <button>Replay</button> */}
-      {/* <button>Clear</button> */}
+      <button onClick={() => replayNotes() } >Replay</button>
+      <button onClick={() => resetNotes()} >Clear</button>
     </div>
   );
 }
