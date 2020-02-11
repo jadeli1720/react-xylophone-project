@@ -50,9 +50,18 @@ function App() {
             note={noteObj}/>
         ))}
       </div>
-      {JSON.stringify(playedNotes)}
-      <button onClick={() => replayNotes() } >Replay</button>
-      <button onClick={() => resetNotes()} >Clear</button>
+      <div className="bottom">
+        <div className="note-container">
+          {JSON.stringify(playedNotes)}
+        </div>
+    
+        <div className="button-container">
+          <button onClick={() => replayNotes() } >Replay</button>
+          <button onClick={() => resetNotes()} >Clear</button>
+        </div>
+        
+      </div>
+      
     </div>
   );
 }
